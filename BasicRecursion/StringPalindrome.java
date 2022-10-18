@@ -1,5 +1,12 @@
 package BasicRecursion;
 
+/* 
+
+    ABCDCBA
+    true
+
+ */
+
 import java.util.Scanner;
 
 public class StringPalindrome {
@@ -11,7 +18,20 @@ public class StringPalindrome {
     }
 
     private static boolean checkPalindrome(String n) {
-        
-        return false;
+        return helper(n,0,n.length()-1);
+    }
+
+    private static boolean helper(String n, int st, int end) {
+        if(st>=end){
+            return true;
+        }
+        boolean res;
+        if(n.charAt(st)==n.charAt(end)){
+            res = helper(n,st+1,end-1);
+        }
+        else{
+            return false;
+        }
+        return res;
     }
 }
