@@ -10,7 +10,7 @@ public class SortingUse {
         for(int i=0;i<n;i++){
             arr[i]=sc.nextInt();
         }
-        //selectionSort(arr);
+        // selectionSort(arr);
         //bubbleSort(arr);
         insertionSort(arr);
         for(int i=0;i<n;i++){
@@ -25,25 +25,23 @@ public class SortingUse {
             for(int j=0;j<(n-i)-1;j++){
                 if(arr[j]>arr[j+1]){
                     int temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;  
-                } 
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
             }
         }
     }
 
     // logic is to find minimum and swap it with i'th position (n^2 approach)
-    private static void selectionSort(int arr[]) {
-        int n=arr.length;
-        for(int i=0;i<n;i++){
-            // find min and swap it with i'th position
+    private static void selectionSort(int[] arr){
+        for(int i=0;i<arr.length;i++){
             int min = i;
-            for(int j=i+1;j<n;j++){
-                if(arr[j]<arr[min]){
-                    min=j;      
+            for(int j=i+1;j<arr.length;j++){
+                if(arr[min] > arr[j]){
+                    min = j;
                 } 
             }
-            // swap i with minimum element
+            // swap it with the current position element
             int temp = arr[i];
             arr[i]=arr[min];
             arr[min]=temp;
@@ -54,13 +52,13 @@ public class SortingUse {
     public static void insertionSort(int arr[]){
        int n = arr.length;
        for(int i=1;i<n;i++){
-          int temp = arr[i];
-          if(arr[i-1]>arr[i]){
-            arr[i]=arr[i-1];
-          }
-          for(int j=0;j<i;j++){
-
-          }           
-       } 
+            int pos = i;
+            while(pos > 0 && arr[pos]<arr[pos-1]){
+                int temp = arr[pos];
+                arr[pos]=arr[pos-1];
+                arr[pos-1]=temp;
+                pos--;
+            }
+       }
     }
 }
