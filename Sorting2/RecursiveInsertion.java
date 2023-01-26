@@ -2,7 +2,7 @@ package Sorting2;
 
 import java.util.Scanner;
 
-public class RecursiveBubble {
+public class RecursiveInsertion {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -10,24 +10,24 @@ public class RecursiveBubble {
         for(int i=0;i<n;i++){
             arr[i]=sc.nextInt();
         }
-        recursiveBubbleSort(arr,n-1);
+        recursiveInsertion(arr,1);
         for(int i=0;i<n;i++){
             System.out.print(arr[i]+" ");
         }
         sc.close();
     }
 
-    private static void recursiveBubbleSort(int[] arr,int end) {
-        if(end <= 0){
+    private static void recursiveInsertion(int[] arr, int st) {
+        if(st==arr.length){
             return;
         }
-        for(int i=0;i<(end);i++){
-            if(arr[i]>arr[i+1]){
-                int temp = arr[i];
-                arr[i]=arr[i+1];
-                arr[i+1]=temp;
-            }
+        int pos = st;
+        while(pos > 0 && arr[pos]<arr[pos-1]){
+             int temp = arr[pos];
+             arr[pos]=arr[pos-1];
+             arr[pos-1]=temp;
+             pos--;
         }
-        recursiveBubbleSort(arr, end-1);
+        recursiveInsertion(arr, st+1);
     }
 }
