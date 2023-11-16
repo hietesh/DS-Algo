@@ -1,40 +1,53 @@
 import java.util.Scanner;
 
-public class Runner {
-	public static void main(String[] args) {
-		int arr[][]=new int[4][5];
-    for(int i=0;i<4;i++)
-    {
-        for(int j=0;j<5;j++)
-        arr[i][j]=i*j;
-    }
-    System.out.print(arr[3][4]);
-
-	}
-}
-
-class Solution {
-	public static String reverseWordWise(String input) {
-		// Write your code here
-		String rev="";
-		for(int j=input.length()-1;j>=0;j--){
-			rev+= input.charAt(j);
+public class Runner{
+    public static void quickSort(int[] input,int st, int end) {
+		if(st>=end){
+			return;
 		}
+		int pivotIndex = partition(input,st,end);
+		quickSort(input, st, pivotIndex-1);
+		quickSort(input, pivotIndex+1, end);
+	}
 
+	public static int partition(int arr[],int si,int end){
+		int i = si;
+		int j = end-1;
+		int pv = arr[end];
 
-		int prevSp = 0;
-
-		for(int i=0;i<rev.length();i++){
-			if(rev.charAt(i)==' '){
-				String temp = "";
-				for(int j=i-1;j>=prevSp;j--){
-					temp+=rev.charAt(j);
-				}
-				rev = temp + rev.substring(i,rev.length());
-				prevSp = i+1; 
+		while(i<j){
+			if(arr[i]>pv){
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+				j--;
+			}
+			else{
+				i++;
 			}
 		}
 
-		return rev;
+		int temp = arr[j];
+		arr[j] = arr[end];
+		arr[end] =temp;
+
+		return pv;
 	}
+
+    static Scanner s = new Scanner(System.in);
+
+    public static int[] takeInput(){
+        int size = s.nextInt();
+        int[] input = new int[size];
+        for(int i = 0; i < size; i++){
+            input[i] = s.nextInt();
+        }
+        return input;
+    }
+
+    public static void main(String args[]) {
+        // int n = 00010204;
+		int ans[][] = new int[0][]; 
+        System.out.println(ans.length);
+    }         
 }
